@@ -1,4 +1,4 @@
-# Local engine logs and datasets
+# Ignore data by default; project data folders are explicitly included below
 /data/**
 !/data/raw/
 !/data/raw/.gitkeep
@@ -36,6 +36,7 @@ htmlcov/
 *.key
 
 # Generated local models and exports
+# Excel lock files (the workbook itself is not matched by this rule)
 /models/
 /reports/private/
 *.log
@@ -47,9 +48,17 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
+# Keep project datasets in version control.
+# These exceptions must remain after the general ignore rules above.
+!/data/csv/
+!/data/csv/**
 !/data/raw/**
 !/data/processed/**
 !/data/calibration/
 !/data/calibration/**
 !/data/synthetic/
 !/data/synthetic/**
+!/data/xlsx/**
+
+# Never add temporary Excel lock files, even inside included data folders.
+~$*.xlsx

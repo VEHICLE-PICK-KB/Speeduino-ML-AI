@@ -134,11 +134,11 @@ def parse_mlg(path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python mlg_to_csv.py input.mlg")
+        print("Usage: python mlg_to_csv_v#.py input.mlg")
         raise SystemExit(1)
 
     input_path = Path(sys.argv[1])
-    output_path = input_path.with_suffix(".csv")
+    output_path = Path("C:/Users/matia/Desktop/UWASA/Applied Machine Learning/Speeduino_ML_AI/data/csv") / input_path.with_suffix(".csv").name
 
     df = parse_mlg(input_path)
     df.to_csv(output_path, index=False)
