@@ -58,6 +58,7 @@ Thumbs.db
 !/data/calibration/**
 !/data/synthetic/
 !/data/synthetic/**
+!/data/xlsx/
 !/data/xlsx/**
 
 # Never add temporary Excel lock files, even inside included data folders.
