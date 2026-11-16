@@ -1,4 +1,4 @@
-# Speeduino Knock-Risk Analysis
+# Engine Knock-Risk Prediction
 
 An Applied Machine Learning project exploring engine operating conditions associated with elevated knock risk using Speeduino ECU logs from a turbocharged BMW M30 engine.
 
