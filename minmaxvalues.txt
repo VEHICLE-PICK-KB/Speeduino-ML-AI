@@ -1,0 +1,159 @@
+Largest values: RPM
+source_log    Time    RPM   MAP
+ night.csv 479.785 5705.0 171.0
+ night.csv 479.719 5660.0 171.0
+ night.csv 479.871 5647.0 140.0
+ night.csv 479.658 5643.0 171.0
+ night.csv 479.592 5601.0 171.0
+
+Smallest values: RPM
+       source_log    Time  RPM  MAP
+05092026wires.csv 278.014  0.0 97.0
+05092026wires.csv 278.083  0.0 97.0
+05092026wires.csv 278.148  0.0 97.0
+05092026wires.csv 278.210  0.0 97.0
+05092026wires.csv 278.280  0.0 97.0
+
+Largest values: MAP
+             source_log     Time   MAP    RPM
+synclossexperiment2.csv 2752.241 291.0  290.0
+synclossexperiment2.csv 2752.311 291.0  295.0
+synclossexperiment2.csv 2752.384 291.0  241.0
+synclossexperiment2.csv 2752.454 291.0  319.0
+              night.csv  544.458 175.0 4314.0
+
+Smallest values: MAP
+source_log    Time  MAP    RPM
+ night.csv 412.883 12.0 3690.0
+ night.csv 412.941 12.0 3666.0
+ night.csv 413.001 12.0 3624.0
+ night.csv 413.083 12.0 3628.0
+ night.csv 413.141 12.0 3613.0
+
+Largest values: AFR
+   source_log    Time  AFR    RPM  MAP
+final_log.csv 171.660 20.0 1855.0 27.0
+final_log.csv 171.660 20.0 1841.0 27.0
+final_log.csv 171.796 20.0 1852.0 27.0
+final_log.csv 171.877 20.0 1847.0 27.0
+final_log.csv 171.935 20.0 1842.0 27.0
+
+Smallest values: AFR
+        source_log   Time  AFR  RPM  MAP
+05092026wires2.csv 11.005 10.0  0.0 97.0
+05092026wires2.csv 11.074 10.0  0.0 97.0
+05092026wires2.csv 11.136 10.0  0.0 97.0
+05092026wires2.csv 11.206 10.0  0.0 97.0
+05092026wires2.csv 11.345 10.0  0.0 97.0
+
+Largest values: TPS
+source_log    Time   TPS    RPM   MAP
+ night.csv 477.994 100.0 4688.0 168.0
+ night.csv 478.150 100.0 4739.0 168.0
+ night.csv 478.212 100.0 4796.0 168.0
+ night.csv 478.273 100.0 4810.0 168.0
+ night.csv 478.339 100.0 4859.0 168.0
+
+Smallest values: TPS
+       source_log    Time  TPS  RPM  MAP
+05092026wires.csv 278.014  0.0  0.0 97.0
+05092026wires.csv 278.083  0.0  0.0 97.0
+05092026wires.csv 278.148  0.0  0.0 97.0
+05092026wires.csv 278.210  0.0  0.0 97.0
+05092026wires.csv 278.280  0.0  0.0 97.0
+
+Largest values: IAT
+           source_log  Time  IAT  RPM   MAP
+misfire_driving 2.csv 7.060 55.0  0.0 100.0
+misfire_driving 2.csv 7.126 55.0  0.0 100.0
+misfire_driving 2.csv 7.196 55.0  0.0 100.0
+misfire_driving 2.csv 7.257 55.0  0.0 100.0
+misfire_driving 2.csv 7.327 55.0  0.0 100.0
+
+Smallest values: IAT
+            source_log  Time  IAT   RPM  MAP
+synclossexperiment.csv 0.000  7.0 995.0 41.0
+synclossexperiment.csv 0.000  7.0 996.0 41.0
+synclossexperiment.csv 0.086  7.0 966.0 41.0
+synclossexperiment.csv 0.086  7.0 959.0 41.0
+synclossexperiment.csv 0.139  7.0 950.0 41.0
+
+Largest values: PW
+             source_log     Time  PW    RPM   MAP
+synclossexperiment2.csv 2752.454 6.1  319.0 291.0
+synclossexperiment2.csv 2752.384 6.0  241.0 291.0
+              night.csv  477.655 5.9 4464.0 168.0
+synclossexperiment2.csv 2752.241 5.9  290.0 291.0
+              night.csv  539.523 5.7 4187.0 170.0
+
+Smallest values: PW
+       source_log    Time  PW  RPM  MAP
+05092026wires.csv 278.014 0.0  0.0 97.0
+05092026wires.csv 278.083 0.0  0.0 97.0
+05092026wires.csv 278.148 0.0  0.0 97.0
+05092026wires.csv 278.210 0.0  0.0 97.0
+05092026wires.csv 278.280 0.0  0.0 97.0
+
+Largest values: Advance
+source_log    Time  Advance    RPM  MAP
+ night.csv 548.411     37.0 5053.0 12.0
+ night.csv 548.411     37.0 5036.0 12.0
+ night.csv 548.496     37.0 5038.0 12.0
+ night.csv 548.615     37.0 5013.0 12.0
+ night.csv 548.674     37.0 4998.0 12.0
+
+Smallest values: Advance
+       source_log    Time  Advance  RPM  MAP
+05092026wires.csv 278.014      0.0  0.0 97.0
+05092026wires.csv 278.083      0.0  0.0 97.0
+05092026wires.csv 278.148      0.0  0.0 97.0
+05092026wires.csv 278.210      0.0  0.0 97.0
+05092026wires.csv 278.280      0.0  0.0 97.0
+
+Largest values: Dwell
+        source_log    Time  Dwell   RPM  MAP
+05092026wires4.csv 824.444    3.5 173.0 51.0
+05092026wires4.csv 824.505    3.5  73.0 51.0
+05092026wires4.csv 824.587    3.5   0.0 94.0
+05092026wires4.csv 824.637    3.5   0.0 97.0
+05092026wires4.csv 824.637    3.5   0.0 97.0
+
+Smallest values: Dwell
+       source_log    Time  Dwell  RPM  MAP
+05092026wires.csv 278.014    0.0  0.0 97.0
+05092026wires.csv 278.083    0.0  0.0 97.0
+05092026wires.csv 278.148    0.0  0.0 97.0
+05092026wires.csv 278.210    0.0  0.0 97.0
+05092026wires.csv 278.280    0.0  0.0 97.0
+
+Largest values: Battery V
+             source_log    Time  Battery V    RPM  MAP
+ synclossexperiment.csv 184.850       14.2 2660.0 73.0
+ synclossexperiment.csv 184.936       14.2 2626.0 54.0
+ synclossexperiment.csv 184.993       14.2 2515.0 34.0
+ synclossexperiment.csv 185.050       14.2 2471.0 29.0
+synclossexperiment2.csv  41.851       14.2  886.0 52.0
+
+Smallest values: Battery V
+        source_log   Time  Battery V  RPM  MAP
+05092026wires2.csv 11.005        0.0  0.0 97.0
+05092026wires2.csv 11.074        0.0  0.0 97.0
+05092026wires2.csv 11.136        0.0  0.0 97.0
+05092026wires2.csv 11.206        0.0  0.0 97.0
+05092026wires2.csv 11.345        0.0  0.0 97.0
+
+Largest values: Boost PSI
+             source_log     Time  Boost PSI    RPM   MAP
+synclossexperiment2.csv 2752.241       27.6  290.0 291.0
+synclossexperiment2.csv 2752.311       27.6  295.0 291.0
+synclossexperiment2.csv 2752.384       27.6  241.0 291.0
+synclossexperiment2.csv 2752.454       27.6  319.0 291.0
+              night.csv  544.458       10.9 4314.0 175.0
+
+Smallest values: Boost PSI
+source_log    Time  Boost PSI    RPM  MAP
+ night.csv 412.883      -12.8 3690.0 12.0
+ night.csv 412.941      -12.8 3666.0 12.0
+ night.csv 413.001      -12.8 3624.0 12.0
+ night.csv 413.083      -12.8 3628.0 12.0
+ night.csv 413.141      -12.8 3613.0 12.0

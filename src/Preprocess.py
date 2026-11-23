@@ -18,6 +18,11 @@ for log_name, log_windows in windows.groupby("log", sort=False):
         )
 
     cleaned = df[b].copy()
+
+    #Segment the data based on time gaps more than 1 second
+    dt = cleaned["Time"].diff()
+    cleaned["segment_id"] = (dt > 1).cumsum()
+
     cleaned.to_csv(
         PROJECT_DIR / "data" / "processed" / log_name,
             index=False
@@ -27,6 +32,7 @@ for log_name, log_windows in windows.groupby("log", sort=False):
     print(f"Rows after: {len(cleaned)}")
     print(f"Start(s): {cleaned['Time'].iloc[0]}")
     print(f"End(s): {cleaned['Time'].iloc[-1]}")
+    print(cleaned.groupby("segment_id")["Time"].agg(["min", "max", "count"])) #First and last timestamp of each segment and number of rows in each segment.
 
 
 cleaned.plot(

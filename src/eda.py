@@ -67,3 +67,69 @@ if __name__ == "__main__":
 #df.plot(x="Time", y=["RPM", "MAP", "Battery V"], subplots=True, figsize=(10, 7), title=log_name
 #)
 #plt.show()
+
+# %%
+log_name = "night.csv"
+df = pd.read_csv(DATA_DIR / log_name)
+
+sensors = df[["RPM", "MAP", "AFR"]] #New DataFrame with only the sensors we want to plot first.
+stats = sensors.describe()
+print(stats.round(2))
+
+sensors.hist(bins=30, figsize=(10, 6))
+plt.tight_layout()
+plt.show()
+
+# %%
+frames = []
+sensor_columns = [
+    "RPM", "MAP", "AFR", "TPS", "IAT",
+    "PW", "Advance", "Dwell", "Battery V", "Boost PSI"
+]
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+    frames.append(df[sensor_columns])
+
+all_sensors = pd.concat(frames, ignore_index=True)
+
+all_stats = all_sensors.describe()
+print(all_stats.round(2))
+
+all_sensors.hist(bins=30, figsize=(12, 12), layout=(4, 3))
+plt.tight_layout()
+plt.show() #histograms for better data visualization
+
+# %%
+print(all_sensors["Boost PSI"].max()) #Inspecting unnatural max boost value.
+# %%
+
+# %%
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+    b = df["MAP"] > 180
+  #Locating the max boost values
+    if b.any():
+        print(f"\nLog: {path.name}")
+        print(df.loc[b, ["Time", "RPM", "MAP", "Boost PSI", "TPS"]])
+
+# %%
+inspection_frames = []
+#Inspection of all max values of the possible final features to check for any unnatural occurences that should be cleaned.
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    selected = df[["Time"] + sensor_columns].copy()
+    selected["source_log"] = path.name
+    inspection_frames.append(selected)
+
+inspection = pd.concat(inspection_frames, ignore_index=True)
+
+for sensor in sensor_columns:
+    columns = ["source_log", "Time", sensor, "RPM", "MAP"] # RPM and map value is added to have more perspective of the min and max values.
+    columns = list(dict.fromkeys(columns))
+
+    print(f"\nLargest values: {sensor}")
+    print(inspection.nlargest(5, sensor)[columns].to_string(index=False))
+
+    print(f"\nSmallest values: {sensor}")
+    print(inspection.nsmallest(5, sensor)[columns].to_string(index=False))
