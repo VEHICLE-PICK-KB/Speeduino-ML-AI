@@ -15,7 +15,7 @@ Inputs include engine speed, manifold absolute pressure, intake-air temperature,
 
 These channels describe operating conditions; they do not provide confirmed knock measurements. Any domain-informed risk index must be described as a heuristic indicator, rather than a measured knock probability. Clusters describe similarities in the recorded data and require separate interpretation in terms of engine behavior.
 
-## Planned workflow
+## Execution
 
 1. Inspect the original MLG logs and the available CSV conversion/export workflow.
 2. Check exported values, column names, units, timestamps, and session boundaries.
