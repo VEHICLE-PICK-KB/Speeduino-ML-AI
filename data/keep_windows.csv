@@ -1,19 +1,20 @@
 log,start_s,end_s
-05092026wires.csv,278,668
-05092026wires2.csv,11,689
-05092026wires3.csv,66,935
-05092026wires4.csv,29,828
-final_log.csv,32,675
-misfire.csv,9,106
-misfire_driving 2.csv,7,inf
-misfire_driving latest.csv,11,696
-night.csv,0,inf
-night2.csv,0,51
-random.csv,66,inf
-spark_wire_pt2.csv,35,83
-synclossexperiment.csv,0,798
-synclossexperiment2.csv,36,1403
-synclossexperiment2.csv,2748,2873
-synclossexperiment3.csv,0,701
-synclossexperiment4.csv,8,inf
-troubleshoot.csv,0,633
+05092026wires.csv,284.206,665.161
+05092026wires2.csv,16.751,684.981
+05092026wires3.csv,74.278,930.843
+05092026wires4.csv,33.496,823.662
+final_log.csv,39.890,670.358
+misfire.csv,14.299,101.569
+misfire_driving 2.csv,12.295,inf
+misfire_driving latest.csv,15.088,634.549
+night.csv,0,629.369
+night.csv,1202.514,inf
+night2.csv,0,46.308
+random.csv,73.348,inf
+spark_wire_pt2.csv,39.540,79.651
+synclossexperiment.csv,0,793.754
+synclossexperiment2.csv,41.003,1398.344
+synclossexperiment2.csv,2755.100,2869.158
+synclossexperiment3.csv,0,696.630
+synclossexperiment4.csv,14.923,inf
+troubleshoot.csv,0,629.277

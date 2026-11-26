@@ -7,6 +7,11 @@ DATA_DIR = PROJECT_DIR / "data" / "csv"
 
 windows = pd.read_csv(PROJECT_DIR / "data" / "keep_windows.csv")
 
+sensor_columns = [
+    "RPM", "rpm/s", "MAP", "AFR", "TPS", "IAT",
+    "PW", "Advance", "Dwell", "Battery V", "Boost PSI"
+]
+
 for log_name, log_windows in windows.groupby("log", sort=False):
     df = pd.read_csv(DATA_DIR / log_name)
 
@@ -18,10 +23,26 @@ for log_name, log_windows in windows.groupby("log", sort=False):
         )
 
     cleaned = df[b].copy()
+    b_running = cleaned["RPM"] > 600
+    cleaned = cleaned[b_running].copy()
 
     #Segment the data based on time gaps more than 1 second
     dt = cleaned["Time"].diff()
     cleaned["segment_id"] = (dt > 1).cumsum()
+
+    cleaned = (
+        cleaned.groupby(["segment_id", "Time"], as_index=False)[sensor_columns]
+        .mean()
+    )
+
+    groups = cleaned.groupby("segment_id")
+
+    dt = groups["Time"].diff()
+    rpm_change = groups["RPM"].diff()
+
+    cleaned["rpm_rate"] = rpm_change / dt
+
+
 
     cleaned.to_csv(
         PROJECT_DIR / "data" / "processed" / log_name,

@@ -1,0 +1,6 @@
+log,segment_id,event_id,start_s,end_s,split
+night.csv,0,pull_1,225.698,255.209,development
+night.csv,0,pull_2,390.679,432.047,development
+night.csv,0,pull_3,454.832,493.993,development
+night.csv,0,pull_4,529.049,559.564,test
+night.csv,0,pull_5,564.647,591.978,development

@@ -83,7 +83,7 @@ plt.show()
 # %%
 frames = []
 sensor_columns = [
-    "RPM", "MAP", "AFR", "TPS", "IAT",
+    "RPM", "rpm/s", "MAP", "AFR", "TPS", "IAT",
     "PW", "Advance", "Dwell", "Battery V", "Boost PSI"
 ]
 for path in sorted(DATA_DIR.glob("*.csv")):
@@ -133,3 +133,171 @@ for sensor in sensor_columns:
 
     print(f"\nSmallest values: {sensor}")
     print(inspection.nsmallest(5, sensor)[columns].to_string(index=False))
+
+
+
+# %%
+#For locating rpm = 0 rows, to be removed because of inaccurate measurement.
+#Second run after the csv files have been cleaned, to make sure that no rpm 0 lines are left.
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    b = df["RPM"] == 0
+    zero_count = b.sum()
+    zero_percent = 100 * zero_count / len(df)
+
+    print(f"\nLog: {path.name}")
+    print(f"Rows: {len(df)}")
+    print(f"RPM = 0: {zero_count} ({zero_percent:.2f} %)")
+
+# %%
+#For removing repeating time stamps
+#value will be an average of the two.
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    b = df.duplicated(subset=["segment_id", "Time"])
+    duplicate_count = b.sum()
+
+    print(f"\nLog: {path.name}")
+    print(f"Extra rows with the same timestamp: {duplicate_count}")
+
+# %%
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    b = df["RPM"] < 600
+
+    print(f"\nLog: {path.name}")
+    print(f"RPM below 700: {b.sum()}")
+    print(df.loc[b, ["Time", "RPM", "MAP", "Battery V"]].head(10))
+
+# %%
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+    print(f"{path.name}: min RPM = {df['RPM'].min()}")
+
+# %%
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    dt = df.groupby("segment_id")["Time"].diff()
+
+    print(f"\nLog: {path.name}")
+    print(dt.describe().round(3))
+
+# %%
+df = pd.read_csv(
+    r"C:\Users\matia\Desktop\UWASA\Applied Machine Learning\Speeduino_ML_AI\data\csv\05092026wires.csv"
+)
+print([column for column in df.columns if "rpm" in column.lower()])
+
+
+
+# %%
+df = pd.read_csv(DATA_DIR / "misfire_driving 2.csv")
+
+b = (df["Time"] >= 18.3) & (df["Time"] <= 19.1)
+
+print(
+    df.loc[b, ["Time", "RPM", "rpm/s", "MAP", "TPS"]]
+    .to_string(index=False)
+)
+
+
+# %%
+df = pd.read_csv(DATA_DIR / "misfire_driving 2.csv")
+
+groups = df.groupby("segment_id")
+dt = groups["Time"].diff()
+rpm_change = groups["RPM"].diff()
+
+df["rpm_rate"] = rpm_change / dt
+
+b = (df["Time"] >= 18.3) & (df["Time"] <= 19.1)
+
+print(
+    df.loc[b, ["Time", "RPM", "rpm/s", "rpm_rate"]]
+    .round(2)
+    .to_string(index=False)
+)
+
+# %%
+df = pd.read_csv(DATA_DIR / "misfire_driving 2.csv")
+
+b = (df["Time"] >= 18.3) & (df["Time"] <= 19.1)
+
+print(
+    df.loc[b, ["Time", "RPM", "rpm_rate"]]
+    .to_string(index=False)
+)
+
+# %%
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    missing = df["rpm_rate"].isna().sum()
+    segments = df["segment_id"].nunique()
+
+    print(f"{path.name}: missing={missing}, segments={segments}")
+
+# %%
+#Starting to check how the different driving conditions are distributed across the cleaned data.
+#This section is for planning how to divide different datasets for the model.
+rows = []
+
+for path in sorted(DATA_DIR.glob("*.csv")):
+    df = pd.read_csv(path)
+
+    rows.append({
+        "log": path.name,
+        "rows": len(df),
+        "max_RPM": df["RPM"].max(),
+        "max_MAP": df["MAP"].max(),
+        "max_TPS": df["TPS"].max(),
+        "TPS_80plus": (df["TPS"] >= 80).sum()
+    })
+
+print(pd.DataFrame(rows).to_string(index=False))
+
+
+# %%
+#Analyzing night.csv, since it is the only real log that contains more diverse driving data.
+df = pd.read_csv(DATA_DIR / "night.csv")
+
+for segment_id, segment in df.groupby("segment_id"):
+    segment.plot(
+        x="Time",
+        y=["RPM", "MAP", "TPS"],
+        subplots=True,
+        figsize=(12, 8),
+        title=f"night.csv — segment {segment_id}"
+    )
+
+    plt.tight_layout()
+    plt.show()
+# %%
+#this block is for checking the data from the marked sections to see that the cropping was correct.
+pull_windows = pd.read_csv(DATA_DIR.parent / "pull_windows.csv")
+df = pd.read_csv(DATA_DIR / "night.csv")
+
+for _, window in pull_windows.iterrows():
+    b = (
+        (df["segment_id"] == window["segment_id"])
+        & (df["Time"] >= window["start_s"])
+        & (df["Time"] <= window["end_s"])
+    )
+    pull = df[b]
+
+    print(
+        f"{window['event_id']}: rows={len(pull)}, "
+        f"max RPM={pull['RPM'].max()}, "
+        f"max MAP={pull['MAP'].max()}, "
+        f"max TPS={pull['TPS'].max()}"
+    )
+
+# %%
+#Pull event categorization test
+pull_windows = pd.read_csv(DATA_DIR.parent / "pull_windows.csv")
+
+print(pull_windows[["event_id", "split"]].to_string(index=False))
